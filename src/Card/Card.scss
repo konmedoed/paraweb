@@ -1,3 +1,53 @@
 .card{
-    
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: flex-start;
+    box-sizing: border-box;
+
+
+    //position: absolute;
+    width: 572px;
+    height: 252px;
+    margin-bottom: 20px;
+    padding: 24px;
+    // gap: 24px;
+
+    background: #FFFFFF;
+    border-radius: 20px;
+
+    &__wrapper{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    &__date{
+        color: #10B2D0;
+    }
+
+    &__title{
+        
+    }
+
+    &__text{
+        height: 72px;
+        overflow: hidden;
+    }
+
+    &__author{
+        padding: 8px 20px;
+        background: rgba(0, 80, 239, 0.06);
+        border-radius: 10px;
+    }
+
+    &__name{
+        
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 18px;
+        /* identical to box height, or 150% */
+        color: #0050EF;
+    }
 }

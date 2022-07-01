@@ -2,3 +2,24 @@
     margin: 0;
     padding: 0;
 }
+
+.text{
+    font-family: 'Montserrat';
+    font-style: normal;
+
+    &_small{
+        font-size: 12px;
+
+    }
+
+    &_normal{
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    &_large{
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 32px;
+    }
+}

@@ -2,12 +2,12 @@ import './Card-grid.scss';
 import Card from '../Card/Card.js'
 
 export default function CardGrid(props){
-    const renderingData = props.data.map(item=><Card key={item.source.name} date={item.publishedAt} title={item.title} text={item.content} author={item.author}/>)
+    const renderingData = props.data.map(item=><Card key={item.source.name} date={item.publishedAt} title={item.title} text={item.content} author={item.author?item.author:item.source.name}/>)
 
     return(
-        <section className='card-grid'>
+        <article className='card-grid'>
             {renderingData}
-        </section>
+        </article>
     )
 }
 
