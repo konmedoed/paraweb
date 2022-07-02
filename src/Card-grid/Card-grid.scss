@@ -1,6 +1,22 @@
 .card-grid{
-    max-width: 1164px;
+    //margin-top: 16px;
+    padding: 16px;
+    margin-bottom: 80px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
+
+@media (min-width: 1300px){
+    .card-grid{
+        margin: 16px 138px;
+        padding: 0;
+    }
+}
+
+
+// @media (max-width: 1200px){
+//     .card-grid{
+//         max-width: 1164px;
+//     }
+// }

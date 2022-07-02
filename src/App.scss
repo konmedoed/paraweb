@@ -1,9 +1,78 @@
 .header{
     height: 88px;
     background: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 138px;
+    align-items: center;
+
+
+    &__mail{
+        margin-right: 40px;
+        text-decoration: none;
+        color: rgba(136, 136, 136, 1);
+    }
+
+    &__phone{
+        text-decoration: none;
+        color: rgba(136, 136, 136, 1);
+    }
 }
 
-.main__card-grid{
+.carousel{
+    height: 546px;
+    background: linear-gradient(100.68deg, #5991FF 13.6%, #0050EF 94.69%);
+}
+
+.filter{
+    height: 132px;
+    background: #F6F9FF;
+
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+
+    &__gap{
+        position: absolute;
+        left: 25.83%;
+        right: 25.83%;
+        top: 50%;
+        bottom: 50%;
+    
+        border: 2px solid #888888;
+        
+        background: #F6F9FF;
+    }
+
+    &__author{
+        width: 335px;
+        height: 52px;
+        background: #FFFFFF;
+        border-radius: 10px;
+    }
+
+}
+
+.main{
+    background: #F6F9FF;
+
+    &__card-grid{
+        display: flex;
+        justify-content: center;
+        //background: #E5E5E5;
+        //padding: 16px;
+        gap: 20px;
+    }
+}
+
+// .css-1d3z3hw-MuiOutlinedInput-notchedOutline{
+//     border: none;
+//     border-radius: 10px;
+// }
+
+
+@media (min-width: 1300px){
+    .filter{
+        padding: 0 138px;
+    }
 }
