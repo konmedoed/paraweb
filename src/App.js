@@ -6,15 +6,9 @@ import axios from 'axios';
 import CardGrid from './Card-grid/Card-grid.js'
 import { FormControl, InputLabel, Select, MenuItem, TextField, Box, Input} from '@mui/material';
 
-// or for Day.js
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-// or for Luxon
-import { AdapterLuxon } from '@mui/x-date-pickers/AdapterLuxon';
-// or for Moment.js
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
-import { LocalizationProvider } from '@mui/x-date-pickers-pro';
-import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
-import { AdapterDateFns } from '@mui/x-date-pickers-pro/AdapterDateFns';
+// import { LocalizationProvider } from '@mui/x-date-pickers-pro';
+// import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
+// import { AdapterDateFns } from '@mui/x-date-pickers-pro/AdapterDateFns';
 
 
 function App() {
@@ -87,8 +81,14 @@ function App() {
             <Input sx={{fontFamily:'Montserrat', fontWeight:'600', fontSize:'16px', lineHeight:'20px'}} placeholder="От" disableUnderline={true}/>
             <Input sx={{fontFamily:'Montserrat', fontWeight:'600', fontSize:'16px', lineHeight:'20px'}} placeholder="До" disableUnderline={true}/>
           </Box> */}
+          <form>
+            <input type="date"/>
+            <input type="date"/>
+          </form>
 
-              <LocalizationProvider
+          
+
+              {/* <LocalizationProvider
                 dateAdapter={AdapterDateFns}
                 localeText={{ start: 'Check-in', end: 'Check-out' }}
               >
@@ -105,7 +105,7 @@ function App() {
                     </React.Fragment>
                   )}
                 />
-              </LocalizationProvider>
+              </LocalizationProvider> */}
             <div className='filter__gap'>
 
             </div>
