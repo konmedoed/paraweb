@@ -8,12 +8,12 @@ export default function Card({date, title, text, author}){
     return(
         <article className='card'>
             <div className='card__wrapper'>
-                <p className='card__date text'>{dateObj.getDate()} {dateObj.toLocaleString('ru', { month: 'long' })} {dateObj.getFullYear()}</p>
-                <h3 className='card__title text'>{title}</h3>
-                <p className='card__text text text_normal'>{text}</p>
+                <p className='card__date text card-text_small'>{dateObj.getDate()} {dateObj.toLocaleString('ru', { month: 'long' })} {dateObj.getFullYear()}</p>
+                <h3 className='card__title text card-text_large'>{title}</h3>
+                <p className='card__content text card-text_normal'>{text}</p>
             </div>
             <div className='card__author'>
-                <p className='card__name text text_small'>{author}</p>
+                <p className='card__name text card-text_small'>{author}</p>
             </div>
         </article>
     )

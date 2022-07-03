@@ -1,11 +1,16 @@
 .header{
     height: 88px;
+    position: fixed;
+    z-index: 2;
+    width: 100vw;
+    box-sizing: border-box;
     background: #FFFFFF;
     display: flex;
     justify-content: space-between;
-    padding: 0 138px;
+    padding: 0 16px;
     align-items: center;
-
+    font-weight: 500;
+    line-height: 20px;
 
     &__mail{
         margin-right: 40px;
@@ -17,17 +22,94 @@
         text-decoration: none;
         color: rgba(136, 136, 136, 1);
     }
+
+    &__mail-icon{
+        visibility: hidden;
+    }
+
+    &__phone-icon{
+        visibility: hidden;
+    }
 }
 
 .carousel{
     height: 546px;
-    background: linear-gradient(100.68deg, #5991FF 13.6%, #0050EF 94.69%);
+    position: relative;
+
+    &__frame{
+        position: relative;
+        height: inherit;
+        background: linear-gradient(100.68deg, #5991FF 13.6%, #0050EF 94.69%);
+    }
+
+    &__img{
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        object-fit: cover;
+    }
+    
+    &__frame-content-wrapper{
+        position: absolute;
+        top: 100px;
+        left: 137px;
+    }
+
+    &__frame-title{
+        margin-bottom: 24px;
+    }
+
+    &__frame-content{
+        width: 513px;
+        margin-bottom: 32px;
+        font-weight: 400;
+        line-height: 24px;
+        color: #FFFFFF;
+    }
+
+    &__more-info-button{
+        padding: 16px 32px;
+        gap: 10px;
+        width: 162px;
+        height: 52px;
+        background: #FFFFFF;
+        border: none;
+        border-radius: 10px;
+        font-weight: 600;
+        line-height: 20px;
+        color: #0050EF;
+    }
+
+    &__dots{
+        position: absolute;
+        left: 138px;
+        bottom: 64px;
+        display: flex;
+        gap: 6px;
+    }
+
+    &__dot{
+        width: 29px;
+        height: 3px;
+        border: none;
+        border-radius: 2px;
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    .active{
+        background: #FFFFFF;
+    }
+    
 }
 
 .filter{
     height: 132px;
+    padding: 16px;
+    gap: 20px;
+    box-sizing: border-box;
     background: #F6F9FF;
-
+    position: sticky;
+    top: 88px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -55,25 +137,191 @@
 
 .main{
     background: #F6F9FF;
+    position: relative;
+    top: 88px;
+    padding-bottom: 60px;
 
     &__card-grid{
         display: flex;
         justify-content: center;
-        //background: #E5E5E5;
-        //padding: 16px;
         gap: 20px;
     }
 }
 
-// .css-1d3z3hw-MuiOutlinedInput-notchedOutline{
-//     border: none;
-//     border-radius: 10px;
-// }
+.footer{
+    height: 228px;
+    position: relative;
+    top: 88px;
+    background: #011846;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 48px 16px;
+
+    &__logo-and-links-wrapper{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__links{
+        display: flex;
+        align-items: center;
+        gap: 48px;
+        font-weight: 500;
+        line-height: 20px;
+    }
+
+    &__сopyright-and-icons-wrapper{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__сopyright{
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: 400;
+        line-height: 20px;
+    }
+
+    &__icons{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+}
+
+.link-decoration-remover{
+    text-decoration: none;
+    color: #FFFFFF;
+}
 
 
-
-@media (min-width: 1300px){
+@media (min-width: 1280px){
+    .header{
+        padding: 0 138px;
+    }
     .filter{
         padding: 0 138px;
     }
+    .footer{
+        padding: 48px 138px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1279.9px){
+    
+}
+
+@media (max-width: 767.9px){
+    .header{
+        &__mail-text{
+            display: none;
+        }
+        &__phone-text{
+            display: none;
+        }
+        &__mail-icon{
+            visibility: visible;
+        }
+        &__phone-icon{
+            visibility: visible;
+        }
+    }
+    .carousel{
+        height: 365px;
+
+        &__frame-content-wrapper{
+            top: 20px;
+            left: 16px;
+        }
+
+        &__frame-title{
+            width: 318px;
+            font-size: 20px;
+            line-height: 24px;
+        }
+
+        &__frame-content{
+            width: 318px;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 22px;
+        }
+
+        &__more-info-button{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 134px;
+            height: 45px;
+            padding: 14px 24px;
+            gap: 10px;
+            font-size: 14px;
+            line-height: 17px;
+        }
+
+        &__dots{
+            bottom: 20px;
+            left: 16px;
+        }
+
+        &__dot{
+            width: 20px;
+        }
+    }
+    
+
+
+    .filter{
+        height: 180px;
+        flex-direction: column;
+        gap: 0;
+
+        &__author{
+            width: 100%;
+        }
+    }
+    
+    .footer{
+        gap: 32px;
+
+        &__logo-and-links-wrapper{
+            flex-direction: column;
+            gap: 32px;
+        }
+
+
+
+        &__сopyright-and-icons-wrapper{
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        &__сopyright{
+            order: 2;
+        }
+    }
+
+}
+
+@media (min-width: 480px) and (max-width: 767.9px){
+    .footer__links{
+        gap: 30px;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 479.9px){
+
+    .footer__links{
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .footer__links>a{
+        flex: 1 1 40%;
+    }
+
 }

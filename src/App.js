@@ -1,7 +1,17 @@
 import './App.scss';
 import logoHeader from './img/logo.png';
+import CarouselImg from './img/K4C.png'
 import logoFooter from './img/logo footer.png';
-import userIcon from './img/user icon.svg'
+import userIcon from './img/user icon.svg';
+import TelegramIcon from '@mui/icons-material/Telegram';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import VkIcon from './img/vkIcon.svg';
+import PhoneIcon from '@mui/icons-material/Phone';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+
+import SvgIcon from '@mui/material/SvgIcon';
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import CardGrid from './Card-grid/Card-grid.js'
@@ -65,17 +75,29 @@ function App() {
           <img src={logoHeader} alt='Space.'/>
         </div>
         <div className='header__contacts-wrapper'>
-          <a className='header__mail text' href="mailto:sales@logo.ru">sales@logo.ru</a>
-          <a className='header__phone text' href="tel:+78000000000">8 800 000 00 00</a>
+          <a className='header__phone text text_normal' href="tel:+78000000000"><span className='header__phone-text'>8 800 000 00 00</span><SvgIcon className='header__phone-icon' component={PhoneIcon}/></a>
+          <a className='header__mail text text_normal' href="mailto:sales@logo.ru"><span className='header__mail-text'>sales@logo.ru</span><SvgIcon className='header__mail-icon' component={MailOutlineIcon}/></a>
         </div>
       </header>
       <main className="main">
         <article className='carousel'>
-
+          <div className='carousel__frame'>
+            <img  className='carousel__img' src={CarouselImg} alt=''/>
+            <div className='carousel__frame-content-wrapper'>
+              <h1 className='carousel__frame-title text text_large'>Как бизнесу сохранять<br/>IT-кадры на фоне кризиса</h1>
+              <h2 className='carousel__frame-content text text_normal'>Инструменты, которые могут использовать компании для удержания сотрудников</h2>
+              <button className='carousel__more-info-button text text_normal'>Подробнее</button>
+            </div>
+          </div>
+          <div className='carousel__dots'>
+            <button className='carousel__dot active'></button>
+            <button className='carousel__dot'></button>
+            <button className='carousel__dot'></button>
+          </div>
         </article>
         <section className='filter'>
-          <FormControl key='choose author' className='filter__author' sx={{marginRight:'20px'}}>
-            <InputLabel sx={{display: 'flex'}} id="demo-simple-select-label"><img src={userIcon} alt=''/><span>Выбор автора</span></InputLabel>
+          <FormControl key='choose author' className='filter__author'>
+            <InputLabel sx={{display: 'flex', gap:'10px', fontFamily: 'Montserrat', fontSize:'16px', fontWeight:'600', lineHeight:'20px', color:'#888888'}} id="demo-simple-select-label"><img src={userIcon} alt=''/><span>Выбор автора</span></InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
@@ -92,7 +114,6 @@ function App() {
           <LocalizationProvider key='choose date'
             dateAdapter={AdapterDateFns}
             localeText={{ start: 'От', end: 'До' }}
-            sx ={{backgroundColor:'#FFFFFF'}}
           >
             <DateRangePicker
               value={date}
@@ -102,8 +123,8 @@ function App() {
               
               renderInput={(startProps, endProps) => (
                 <React.Fragment>
-                  <TextField {...startProps} sx ={{backgroundColor:'#FFFFFF', borderWidth: 0}}/>
-                  <Box sx={{ mx: 2,backgroundColor:'#FFFFFF', border: 'none'}}><span>-</span></Box >
+                  <TextField {...startProps} sx ={{backgroundColor:'#FFFFFF'}}/>
+                  <Box sx={{ mx: 2,backgroundColor:'#FFFFFF'}}><span>-</span></Box >
                   <TextField {...endProps} sx ={{backgroundColor:'#FFFFFF'}}/>
                 </React.Fragment>
               )}
@@ -115,10 +136,26 @@ function App() {
         </article>
       </main>
       <footer className='footer'>
-        <img src={logoFooter} alt='Space.'/>
-        <div className='footer__links'></div>
-        <div className='footer__сopyright'></div>
-        <div className='footer__icons'></div>
+        <div className='footer__logo-and-links-wrapper'>
+          <div className='footer__logo-wrapper'>
+            <img src={logoFooter} alt='Space.'/>
+          </div>
+          <div className='footer__links'>
+            <a className='text text_normal link-decoration-remover' href=''>Готовые решения</a>
+            <a className='text text_normal link-decoration-remover' href=''>О нас</a>
+            <a className='text text_normal link-decoration-remover' href=''>Блог</a>
+            <a className='text text_normal link-decoration-remover' href=''>Контакты</a>
+          </div>
+        </div>
+        <div className='footer__сopyright-and-icons-wrapper'>
+          <div className='footer__сopyright text text_small'>© ООО «Лого», 2008—2022</div>
+          <div className='footer__icons'>
+            <a className='link-decoration-remover' href=''><SvgIcon component={TelegramIcon}/></a>
+            <a className='link-decoration-remover' href=''><img src={VkIcon} width='17.5px' height='10.7px'/></a>
+            <a className='link-decoration-remover' href=''><SvgIcon component={TwitterIcon}/></a>
+            <a className='link-decoration-remover' href=''><SvgIcon component={YouTubeIcon}/></a>
+          </div>
+        </div>
       </footer>
     </div>
   );
