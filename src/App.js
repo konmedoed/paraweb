@@ -1,5 +1,6 @@
 import './App.scss';
-import logo from './img/logo.png';
+import logoHeader from './img/logo.png';
+import logoFooter from './img/logo footer.png';
 import userIcon from './img/user icon.svg'
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -50,7 +51,6 @@ function App() {
 
   useEffect(function(){
     setRenderData(serverData.filter(item=>{
-      debugger;
       if ( (Date.parse(item.publishedAt) >= Date.parse(date[0])) && (Date.parse(item.publishedAt) <= Date.parse(date[1])) )
         return true
     }
@@ -62,7 +62,7 @@ function App() {
     <div className="App">
       <header className="header">
         <div className='header__logo'>
-          <img src={logo} alt='Space.'/>
+          <img src={logoHeader} alt='Space.'/>
         </div>
         <div className='header__contacts-wrapper'>
           <a className='header__mail text' href="mailto:sales@logo.ru">sales@logo.ru</a>
@@ -115,7 +115,10 @@ function App() {
         </article>
       </main>
       <footer className='footer'>
-
+        <img src={logoFooter} alt='Space.'/>
+        <div className='footer__links'></div>
+        <div className='footer__сopyright'></div>
+        <div className='footer__icons'></div>
       </footer>
     </div>
   );
