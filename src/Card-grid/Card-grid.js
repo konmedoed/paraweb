@@ -2,7 +2,7 @@ import './Card-grid.scss';
 import Card from '../Card/Card.js'
 
 export default function CardGrid(props){
-    const renderingData = props.data.map(item=><Card key={item.source.name} date={item.publishedAt} title={item.title} text={item.content} author={item.author?item.author:item.source.name}/>)
+    const renderingData = props.data.map(item=><Card key={item.title} date={item.publishedAt} title={item.title} text={item.content} author={item.author}/>)
 
     return(
         <article className='card-grid'>

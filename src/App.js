@@ -4,33 +4,58 @@ import userIcon from './img/user icon.svg'
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import CardGrid from './Card-grid/Card-grid.js'
-import { FormControl, InputLabel, Select, MenuItem, TextField, Box, Input} from '@mui/material';
+import { FormControl, InputLabel, Select, MenuItem} from '@mui/material';
 
-// import { LocalizationProvider } from '@mui/x-date-pickers-pro';
-// import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
-// import { AdapterDateFns } from '@mui/x-date-pickers-pro/AdapterDateFns';
+import TextField from '@mui/material/TextField';
+import { LocalizationProvider } from '@mui/x-date-pickers-pro';
+import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
+import { AdapterDateFns } from '@mui/x-date-pickers-pro/AdapterDateFns';
+import Box from '@mui/material/Box';
 
 
 function App() {
   const [serverData, setServerData] = useState([]);
   const [renderData, setRenderData] = useState([]);
-  const [age,setAge]=useState('');
-  const [value, setValue] = useState([null, null]);
+  const [currentAuthor,setCurrentAuthor]=useState('');
+  const [date, setDate] = useState([null, null]);
+
+  console.log(date[0]);
+
+  const [renderAuthors, setRenderAuthors] = useState([]);
 
   const url = 'https://mocki.io/v1/a5814d24-4e22-49fc-96d1-0e9ae2952afc';
-
   useEffect(function(){
     axios.get(url).then(response=>{
-      setServerData(response.data.articles);
+      const checkedDataForState = [];
+      response.data.articles.forEach(element => {checkedDataForState.push(element)});
+      checkedDataForState.forEach(element=>{
+        if (element.author===null){
+          element.author=element.source.name;
+        }
+      })
+      setServerData(checkedDataForState);
     })
   },[]);
 
   useEffect(function(){
     setRenderData(serverData.filter(item=>true));
+    setRenderAuthors(serverData.map(item=><MenuItem key={`author ${item.title}`} value={item.author}>{item.author}</MenuItem>));
   },[serverData]);
 
+  useEffect(function(){
+    if (currentAuthor==='')
+      setRenderData(serverData.filter(item=>true));
+    else setRenderData(serverData.filter(item=>item.author===currentAuthor));
+  },[currentAuthor]);
 
-
+  useEffect(function(){
+    setRenderData(serverData.filter(item=>{
+      debugger;
+      if ( (Date.parse(item.publishedAt) >= Date.parse(date[0])) && (Date.parse(item.publishedAt) <= Date.parse(date[1])) )
+        return true
+    }
+    ));
+  },[date]);
 
 
   return (
@@ -49,73 +74,45 @@ function App() {
 
         </article>
         <section className='filter'>
-          <FormControl className='filter__author'>
+          <FormControl key='choose author' className='filter__author' sx={{marginRight:'20px'}}>
             <InputLabel sx={{display: 'flex'}} id="demo-simple-select-label"><img src={userIcon} alt=''/><span>Выбор автора</span></InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={age}
+              value={currentAuthor}
               label="Выбор автора"
-              onChange={e=>setAge(e.target.value)}
+              onChange={e=>{setCurrentAuthor(e.target.value);console.log(e.target.value)}}
             >
-              <MenuItem value="">
+              <MenuItem key='item-none' value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty k;ajdsfas asddfb abhsdf asdf bhjl dsafg df df ssdf df </MenuItem>
+              {renderAuthors}
             </Select>
-          </FormControl>
-          <div>
-          {/* <Box
-            component="form"
-            sx={{
-              background: '#FFFFFF',
-            }}
-            noValidate
-            autoComplete="off"
+          </FormControl>          
+          <LocalizationProvider key='choose date'
+            dateAdapter={AdapterDateFns}
+            localeText={{ start: 'От', end: 'До' }}
+            sx ={{backgroundColor:'#FFFFFF'}}
           >
-            <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-            <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-
-            <Input sx={{fontFamily:'Montserrat', fontWeight:'600', fontSize:'16px', lineHeight:'20px'}} placeholder="От" disableUnderline={true}/>
-            <Input sx={{fontFamily:'Montserrat', fontWeight:'600', fontSize:'16px', lineHeight:'20px'}} placeholder="До" disableUnderline={true}/>
-          </Box> */}
-          <form>
-            <input type="date"/>
-            <input type="date"/>
-          </form>
-
-          
-
-              {/* <LocalizationProvider
-                dateAdapter={AdapterDateFns}
-                localeText={{ start: 'Check-in', end: 'Check-out' }}
-              >
-                <DateRangePicker
-                  value={value}
-                  onChange={(newValue) => {
-                    setValue(newValue);
-                  }}
-                  renderInput={(startProps, endProps) => (
-                    <React.Fragment>
-                      <TextField {...startProps} />
-                      <Box sx={{ mx: 2 }}> to </Box>
-                      <TextField {...endProps} />
-                    </React.Fragment>
-                  )}
-                />
-              </LocalizationProvider> */}
-            <div className='filter__gap'>
-
-            </div>
-          </div>
-          
+            <DateRangePicker
+              value={date}
+              onChange={(newValue) => {
+                  setDate(newValue);
+              }}
+              
+              renderInput={(startProps, endProps) => (
+                <React.Fragment>
+                  <TextField {...startProps} sx ={{backgroundColor:'#FFFFFF', borderWidth: 0}}/>
+                  <Box sx={{ mx: 2,backgroundColor:'#FFFFFF', border: 'none'}}><span>-</span></Box >
+                  <TextField {...endProps} sx ={{backgroundColor:'#FFFFFF'}}/>
+                </React.Fragment>
+              )}
+            />
+          </LocalizationProvider>
         </section>
         <article className="main__card-grid">
-          <CardGrid data={renderData}/>
+          <CardGrid key='card-grid' data={renderData}/>
         </article>
-        
       </main>
       <footer className='footer'>
 
