@@ -6,21 +6,40 @@
     box-sizing: border-box;
     background: #FFFFFF;
     display: flex;
-    justify-content: space-between;
-    padding: 0 16px;
+    justify-content: center;
+    // padding: 0 16px;
     align-items: center;
     font-weight: 500;
     line-height: 20px;
 
-    &__mail{
-        margin-right: 40px;
-        text-decoration: none;
-        color: rgba(136, 136, 136, 1);
+    &__wrapper{
+        max-width: 700px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__contacts-wrapper{
+        align-items: center;
     }
 
     &__phone{
+        margin-right: 40px;
         text-decoration: none;
         color: rgba(136, 136, 136, 1);
+
+        svg{
+            display: none;
+        }
+    }
+
+    &__mail{
+        text-decoration: none;
+        color: rgba(136, 136, 136, 1);
+
+        svg{
+            display: none;
+        }
     }
 
     &__mail-icon{
@@ -32,87 +51,22 @@
     }
 }
 
-.carousel{
-    height: 546px;
-    position: relative;
-
-    &__frame{
-        position: relative;
-        height: inherit;
-        background: linear-gradient(100.68deg, #5991FF 13.6%, #0050EF 94.69%);
-    }
-
-    &__img{
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        object-fit: cover;
-    }
-    
-    &__frame-content-wrapper{
-        position: absolute;
-        top: 100px;
-        left: 137px;
-    }
-
-    &__frame-title{
-        margin-bottom: 24px;
-    }
-
-    &__frame-content{
-        width: 513px;
-        margin-bottom: 32px;
-        font-weight: 400;
-        line-height: 24px;
-        color: #FFFFFF;
-    }
-
-    &__more-info-button{
-        padding: 16px 32px;
-        gap: 10px;
-        width: 162px;
-        height: 52px;
-        background: #FFFFFF;
-        border: none;
-        border-radius: 10px;
-        font-weight: 600;
-        line-height: 20px;
-        color: #0050EF;
-    }
-
-    &__dots{
-        position: absolute;
-        left: 138px;
-        bottom: 64px;
-        display: flex;
-        gap: 6px;
-    }
-
-    &__dot{
-        width: 29px;
-        height: 3px;
-        border: none;
-        border-radius: 2px;
-        background: rgba(255, 255, 255, 0.3);
-    }
-
-    .active{
-        background: #FFFFFF;
-    }
-    
-}
-
 .filter{
     height: 132px;
-    padding: 16px;
     gap: 20px;
     box-sizing: border-box;
     background: #F6F9FF;
     position: sticky;
     top: 88px;
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    justify-content: center;
+
+    &__wrapper{
+        display: flex;
+        max-width: 1160px;
+        width: 100%;
+        align-items: center;
+    }
 
     &__gap{
         position: absolute;
@@ -128,10 +82,14 @@
 
     &__author{
         width: 335px;
-        //height: 52px;
+        margin-right: 20px !important;
         background: #FFFFFF;
         border-radius: 10px;
     }
+
+    &__date-wrapper>div{
+            align-items: center;
+        }
 
 }
 
@@ -199,10 +157,9 @@
 
 @media (min-width: 1280px){
     .header{
-        padding: 0 138px;
-    }
-    .filter{
-        padding: 0 138px;
+        &__wrapper{
+            max-width: 1200px;
+        }
     }
     .footer{
         padding: 48px 138px;
@@ -210,11 +167,26 @@
 }
 
 @media (min-width: 768px) and (max-width: 1279.9px){
-    
+    .header{
+        &_wrapper{
+            max-width: 700px;
+        }
+    }
+
+    .filter__wrapper{
+        justify-content: flex-start;
+        margin: 0 16px;
+    }
 }
 
 @media (max-width: 767.9px){
     .header{
+        height: 55px;
+
+        &__wrapper{
+            padding: 0 16px;
+        }
+    
         &__mail-text{
             display: none;
         }
@@ -227,61 +199,65 @@
         &__phone-icon{
             visibility: visible;
         }
-    }
-    .carousel{
-        height: 365px;
 
-        &__frame-content-wrapper{
-            top: 20px;
-            left: 16px;
-        }
-
-        &__frame-title{
-            width: 318px;
-            font-size: 20px;
-            line-height: 24px;
-        }
-
-        &__frame-content{
-            width: 318px;
-            font-weight: 400;
-            font-size: 14px;
-            line-height: 22px;
-        }
-
-        &__more-info-button{
+        &__contacts-wrapper{
             display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            width: 134px;
-            height: 45px;
-            padding: 14px 24px;
-            gap: 10px;
-            font-size: 14px;
-            line-height: 17px;
+            width: 60px;
+            justify-content: space-between;
         }
 
-        &__dots{
-            bottom: 20px;
-            left: 16px;
+        &__phone{
+            width: 22px;
+            height: 22px;
+            margin-right: 0px;
+            svg{
+                display: block;
+            }
+        }
+        &__mail{
+            width: 22px;
+            height: 22px;
+            svg{
+                display: block;
+            }
         }
 
-        &__dot{
-            width: 20px;
-        }
     }
-    
-
+    .main{
+        top: 55px;
+    }
 
     .filter{
         height: 180px;
-        flex-direction: column;
-        gap: 0;
+
+        &__wrapper{
+            margin: 16px;
+            flex-direction: column;
+            justify-content: center;
+
+            &__author{
+                width: 100%;
+            }
+        }
 
         &__author{
+            margin: 0 0 16px 0 !important;
             width: 100%;
         }
+        &__date{
+            width: 50%;
+            >div{
+                width: 100%;
+            }
+        }
+        &__date-wrapper{
+            width: 100%;
+            >div{
+                width: 100%;
+                align-items: center;
+            }
+        }
+
     }
     
     .footer{
@@ -291,8 +267,6 @@
             flex-direction: column;
             gap: 32px;
         }
-
-
 
         &__сopyright-and-icons-wrapper{
             flex-direction: column;
@@ -314,6 +288,7 @@
 }
 
 @media (min-width: 320px) and (max-width: 479.9px){
+    
 
     .footer__links{
         flex-wrap: wrap;

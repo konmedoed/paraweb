@@ -1,6 +1,6 @@
 import './App.scss';
 import logoHeader from './img/logo.png';
-import CarouselImg from './img/K4C.png'
+import Carousel from './Carousel/Carousel';
 import logoFooter from './img/logo footer.png';
 import userIcon from './img/user icon.svg';
 import TelegramIcon from '@mui/icons-material/Telegram';
@@ -29,9 +29,6 @@ function App() {
   const [renderData, setRenderData] = useState([]);
   const [currentAuthor,setCurrentAuthor]=useState('');
   const [date, setDate] = useState([null, null]);
-
-  console.log(date[0]);
-
   const [renderAuthors, setRenderAuthors] = useState([]);
 
   const url = 'https://mocki.io/v1/a5814d24-4e22-49fc-96d1-0e9ae2952afc';
@@ -67,35 +64,23 @@ function App() {
     ));
   },[date]);
 
-
   return (
     <div className="App">
       <header className="header">
-        <div className='header__logo'>
-          <img src={logoHeader} alt='Space.'/>
-        </div>
-        <div className='header__contacts-wrapper'>
-          <a className='header__phone text text_normal' href="tel:+78000000000"><span className='header__phone-text'>8 800 000 00 00</span><SvgIcon className='header__phone-icon' component={PhoneIcon}/></a>
-          <a className='header__mail text text_normal' href="mailto:sales@logo.ru"><span className='header__mail-text'>sales@logo.ru</span><SvgIcon className='header__mail-icon' component={MailOutlineIcon}/></a>
+        <div className='header__wrapper'>
+          <div className='header__logo'>
+            <img src={logoHeader} alt='Space.'/>
+          </div>
+          <div className='header__contacts-wrapper'>
+            <a className='header__phone text text_normal' href="tel:+78000000000"><span className='header__phone-text'>8 800 000 00 00</span><SvgIcon className='header__phone-icon' component={PhoneIcon}/></a>
+            <a className='header__mail text text_normal' href="mailto:sales@logo.ru"><span className='header__mail-text'>sales@logo.ru</span><SvgIcon className='header__mail-icon' component={MailOutlineIcon}/></a>
+          </div>
         </div>
       </header>
       <main className="main">
-        <article className='carousel'>
-          <div className='carousel__frame'>
-            <img  className='carousel__img' src={CarouselImg} alt=''/>
-            <div className='carousel__frame-content-wrapper'>
-              <h1 className='carousel__frame-title text text_large'>Как бизнесу сохранять<br/>IT-кадры на фоне кризиса</h1>
-              <h2 className='carousel__frame-content text text_normal'>Инструменты, которые могут использовать компании для удержания сотрудников</h2>
-              <button className='carousel__more-info-button text text_normal'>Подробнее</button>
-            </div>
-          </div>
-          <div className='carousel__dots'>
-            <button className='carousel__dot active'></button>
-            <button className='carousel__dot'></button>
-            <button className='carousel__dot'></button>
-          </div>
-        </article>
+        <Carousel/>
         <section className='filter'>
+          <div className='filter__wrapper'>
           <FormControl key='choose author' className='filter__author'>
             <InputLabel sx={{display: 'flex', gap:'10px', fontFamily: 'Montserrat', fontSize:'16px', fontWeight:'600', lineHeight:'20px', color:'#888888'}} id="demo-simple-select-label"><img src={userIcon} alt=''/><span>Выбор автора</span></InputLabel>
             <Select
@@ -110,26 +95,26 @@ function App() {
               </MenuItem>
               {renderAuthors}
             </Select>
-          </FormControl>          
-          <LocalizationProvider key='choose date'
-            dateAdapter={AdapterDateFns}
-            localeText={{ start: 'От', end: 'До' }}
-          >
-            <DateRangePicker
-              value={date}
-              onChange={(newValue) => {
-                  setDate(newValue);
-              }}
-              
-              renderInput={(startProps, endProps) => (
-                <React.Fragment>
-                  <TextField {...startProps} sx ={{backgroundColor:'#FFFFFF'}}/>
-                  <Box sx={{ mx: 2,backgroundColor:'#FFFFFF'}}><span>-</span></Box >
-                  <TextField {...endProps} sx ={{backgroundColor:'#FFFFFF'}}/>
-                </React.Fragment>
-              )}
-            />
-          </LocalizationProvider>
+          </FormControl>
+          <div className='filter__date-wrapper'>
+            <LocalizationProvider key='choose date' dateAdapter={AdapterDateFns} localeText={{ start: 'От', end: 'До' }}>
+              <DateRangePicker value={date} onChange={(newValue) => {setDate(newValue);}}
+                renderInput={(startProps, endProps) => (
+                  <React.Fragment>
+                      <div className='filter__date'>
+                        <TextField {...startProps} sx ={{backgroundColor:'#FFFFFF'}}/>
+                      </div>
+                      <Box sx={{ mx: 2,backgroundColor:'#FFFFFF'}}><span>-</span></Box >
+                      <div className='filter__date'>
+                        <TextField {...endProps} sx ={{backgroundColor:'#FFFFFF'}}/>
+                      </div>
+                  </React.Fragment>
+                )}
+              />
+            </LocalizationProvider>
+          </div>   
+          
+          </div>
         </section>
         <article className="main__card-grid">
           <CardGrid key='card-grid' data={renderData}/>
